@@ -1,0 +1,38 @@
+# Companion file: agent-friendly metadata (synonyms, display names, descriptions)
+# merged into the OSI YAML at export time.
+#
+# In the current Databricks Metric View YAML schema (DBR 16.x at time of writing),
+# columns/measures only support `name`, `expr`, `window`. Richer annotations live
+# here and are merged by osi_bridge/exporter.py when producing OSI v1.0 YAML.
+
+dimensions:
+  order_priority:
+    display_name: Order Priority
+    description: TPC-DS order priority — 1-URGENT through 5-LOW
+    synonyms: [priority, urgency]
+  order_status:
+    display_name: Order Status
+    description: O = open, F = fulfilled, P = in-progress
+    synonyms: [status, state]
+  clerk:
+    display_name: Clerk
+    description: Clerk who processed the order
+  order_date:
+    display_name: Order Date
+    description: Date the order was placed
+    is_time: true
+    synonyms: [date, when, period]
+
+metrics:
+  total_revenue:
+    display_name: Total Revenue
+    description: Sum of order totals across all orders
+    synonyms: [revenue, sales, gmv, top line]
+  order_count:
+    display_name: Order Count
+    description: Distinct count of orders
+    synonyms: [orders, number of orders, volume]
+  avg_order_value:
+    display_name: Average Order Value
+    description: Mean of o_totalprice across orders
+    synonyms: [aov, average sale, basket size]
